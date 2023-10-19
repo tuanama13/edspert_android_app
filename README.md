@@ -2,7 +2,7 @@
 
 A new Flutter project for bootcampt in Edspert Course.
 
-![Home Page](assets/images/Home%20Page.png)
+<img src="assets/images/Home%20Page.png"  height="300">
 
 ## Getting Started
 
