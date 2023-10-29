@@ -1,3 +1,4 @@
+import 'package:edspert_app/screen/home_screen/home_screen_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -48,7 +49,14 @@ class LoginPage extends StatelessWidget {
             Column(
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreenPage(),
+                      ),
+                    );
+                  },
                   style:
                       ElevatedButton.styleFrom(backgroundColor: Colors.white),
                   child: Row(
