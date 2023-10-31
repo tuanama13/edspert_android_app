@@ -11,11 +11,18 @@ part 'exercise_state.dart';
 class ExerciseBloc extends Bloc<ExerciseEvent, ExerciseState> {
   final CourseRemoteDatasource courseRemoteDatasource;
 
-  ExerciseBloc({required this.courseRemoteDatasource}) : super(ExerciseInitial()) {
+  ExerciseBloc({required this.courseRemoteDatasource})
+      : super(ExerciseInitial()) {
     on<ExerciseEvent>((event, emit) async {
       if (event is GetExerciseListEvent) {
         emit(ExerciseLoading());
-        final result = await courseRemoteDatasource.getExercises(event.courseId);
+        final result =
+            await courseRemoteDatasource.getExercises(event.courseId);
+        // for(result.data.length)
+        for (var i = 0; i < (result.data?.length ?? 0); i++) {
+          await courseRemoteDatasource
+              .getQuestionList(result.data?[i].exerciseId ?? "");
+        }
         emit(ExerciseSuccess(exerciseResponse: result));
       }
 

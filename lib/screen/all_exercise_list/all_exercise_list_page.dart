@@ -6,7 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AllExercisePage extends StatelessWidget {
   final String courseId;
   final String courseTitle;
-  const AllExercisePage({super.key, required this.courseId, required this.courseTitle});
+  const AllExercisePage(
+      {super.key, required this.courseId, required this.courseTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +59,13 @@ class AllExercisePage extends StatelessWidget {
                                 height: 16,
                                 width: 16,
                               )),
-                          Text(exercise?.exerciseTitle ?? "no Title"),
-                          Text("${exercise?.jumlahDone}/${exercise?.jumlahSoal}"),
+                          Text(
+                            exercise?.exerciseTitle ?? "no Title",
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Text(
+                              "${exercise?.jumlahDone}/${exercise?.jumlahSoal}"),
                         ],
                       ),
                     ),
