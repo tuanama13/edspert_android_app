@@ -1,9 +1,7 @@
-import 'dart:async';
-
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:edspert_app/datasource/banner_remote_datasource.dart';
 import 'package:edspert_app/model/banner_response_model.dart';
-import 'package:meta/meta.dart';
 
 part 'banner_event.dart';
 part 'banner_state.dart';
