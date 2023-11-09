@@ -1,5 +1,6 @@
 import 'package:edspert_app/bloc/banner/banner_bloc.dart';
 import 'package:edspert_app/bloc/course/course_bloc.dart';
+import 'package:edspert_app/constants/colors.dart';
 import 'package:edspert_app/datasource/banner_remote_datasource.dart';
 import 'package:edspert_app/datasource/course_remote_datasource.dart';
 import 'package:edspert_app/model/banner_response_model.dart';
@@ -36,7 +37,8 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
     super.initState();
   }
 
-  final courseBloc = CourseBloc(courseRemoteDataSource: CourseRemoteDatasource());
+  final courseBloc =
+      CourseBloc(courseRemoteDataSource: CourseRemoteDatasource());
 
   @override
   Widget build(BuildContext context) {
@@ -48,11 +50,11 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                 ..add(GetBannerListEvent()),
         ),
         BlocProvider(
-          create: (context) =>
-             courseBloc..add(GetCourseListEvent()),
+          create: (context) => courseBloc..add(GetCourseListEvent()),
         ),
       ],
       child: Scaffold(
+        backgroundColor: ColorThemes.backgroundColor,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -140,8 +142,8 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        AllCourseListPage(courseBloc: courseBloc)));
+                                    builder: (context) => AllCourseListPage(
+                                        courseBloc: courseBloc)));
                           },
                           child: const Text("Lihat Semua"))
                     ],
@@ -152,7 +154,9 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                         return Center(child: Text(state.message ?? ""));
                       } else if (state is CourseSuccess) {
                         return CourseListWidget(
-                            courseList: state.courseResponse.data ?? [],isHomeScreen: true,);
+                          courseList: state.courseResponse.data ?? [],
+                          isHomeScreen: true,
+                        );
                       }
                       return const Center(child: CircularProgressIndicator());
                     },

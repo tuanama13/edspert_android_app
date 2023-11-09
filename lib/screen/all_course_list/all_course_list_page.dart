@@ -1,4 +1,5 @@
 import 'package:edspert_app/bloc/course/course_bloc.dart';
+import 'package:edspert_app/constants/colors.dart';
 import 'package:edspert_app/datasource/course_remote_datasource.dart';
 import 'package:edspert_app/widgets/course_list_widget.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class AllCourseListPage extends StatelessWidget {
     return BlocProvider.value(
       value: courseBloc,
       child: Scaffold(
-        backgroundColor: Colors.grey[200],
+        backgroundColor: ColorThemes.backgroundColor,
         appBar: AppBar(
           backgroundColor: const Color(0xFF3A7FD5),
           leading: IconButton(

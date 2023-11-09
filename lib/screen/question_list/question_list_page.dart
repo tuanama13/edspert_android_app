@@ -31,6 +31,7 @@ class _QuestionListPageState extends State<QuestionListPage> {
           QuestionBloc(courseRemoteDatasource: CourseRemoteDatasource())
             ..add(GetQuestionListEvent(exerciseId: widget.exerciseId)),
       child: Scaffold(
+        backgroundColor: ColorThemes.backgroundColor,
         appBar: AppBar(
           title: const Text(
             'Latihan Soal',
@@ -59,31 +60,43 @@ class _QuestionListPageState extends State<QuestionListPage> {
                 if (state is QuestionSuccess) {
                   return Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: EasyStepper(
-                          fitWidth: false,
-                          steps: getSteps(state.questionResponse.data),
-                          activeStep: _index,
-                          showLoadingAnimation: false,
-                          borderThickness: 2,
-                          activeStepTextColor: Colors.white,
-                          activeStepBackgroundColor: ColorThemes.primary,
-                          finishedStepTextColor: Colors.white,
-                          defaultStepBorderType: BorderType.normal,
-                          activeStepBorderColor: ColorThemes.primary,
-                          finishedStepBackgroundColor: ColorThemes.primary,
-                          stepRadius: 15,
-                          padding: const EdgeInsets.all(0),
-                          lineStyle: const LineStyle(
-                              defaultLineColor: Colors.white,
-                              lineWidth: 1,
-                              lineLength: 1),
-                          enableStepTapping: true,
-                          onStepReached: (index) {
-                            setState(() => _index = index);
-                          },
+                      Container(
+                        decoration: const BoxDecoration(color: Colors.white),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 13, vertical: 10),
+                          child: SizedBox(
+                            height: 25,
+                            child: EasyStepper(
+                              fitWidth: false,
+                              steps: getSteps(state.questionResponse.data),
+                              activeStep: _index,
+                              showLoadingAnimation: false,
+                              borderThickness: 2,
+                              unreachedStepBorderColor: ColorThemes.primary,
+                              unreachedStepTextColor: ColorThemes.primary,
+                              activeStepTextColor: Colors.white,
+                              activeStepBackgroundColor: ColorThemes.primary,
+                              finishedStepTextColor: Colors.white,
+                              defaultStepBorderType: BorderType.normal,
+                              activeStepBorderColor: ColorThemes.primary,
+                              finishedStepBackgroundColor: ColorThemes.primary,
+                              stepRadius: 15,
+                              padding: const EdgeInsets.all(0),
+                              lineStyle: const LineStyle(
+                                  defaultLineColor: Colors.white,
+                                  lineWidth: 1,
+                                  lineLength: 1),
+                              enableStepTapping: false,
+                              onStepReached: (index) {
+                                setState(() => _index = index);
+                              },
+                            ),
+                          ),
                         ),
+                      ),
+                      const SizedBox(
+                        height: 15,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
