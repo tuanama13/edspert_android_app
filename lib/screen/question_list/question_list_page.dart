@@ -3,9 +3,11 @@ import 'dart:developer';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:edspert_app/bloc/question/question_bloc.dart';
 import 'package:edspert_app/constants/colors.dart';
+import 'package:edspert_app/constants/styles.dart';
 import 'package:edspert_app/datasource/course_remote_datasource.dart';
 import 'package:edspert_app/model/question_response_model.dart';
 import 'package:edspert_app/widgets/options_list_widget.dart';
+import 'package:edspert_app/widgets/submit_modal_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
@@ -55,7 +57,6 @@ class _QuestionListPageState extends State<QuestionListPage> {
                 }
 
                 if (state is QuestionSuccess) {
-                  log(state.questionResponse.data![_index].exerciseIdFk ?? "");
                   return Column(
                     children: [
                       Padding(
@@ -187,41 +188,72 @@ class _QuestionListPageState extends State<QuestionListPage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                ElevatedButton(
-                                  style: const ButtonStyle(
-                                    foregroundColor:
-                                        MaterialStatePropertyAll(Colors.black),
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      if (_index > 0) {
-                                        _index -= 1;
-                                      }
-                                    });
-                                  },
-                                  child: const Text("Kembali"),
-                                ),
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                    textStyle: const MaterialStatePropertyAll(
-                                        TextStyle(color: Colors.white)),
-                                    backgroundColor: MaterialStatePropertyAll(
-                                        ColorThemes.primary),
-                                    foregroundColor:
-                                        const MaterialStatePropertyAll(
-                                            Colors.white),
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      if (_index <=
-                                          state.questionResponse.data!.length) {
-                                        _index += 1;
-                                        _result = "X";
-                                      }
-                                    });
-                                  },
-                                  child: const Text("Selanjutnya"),
-                                )
+                                if (_index > 0) ...[
+                                  OutlinedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          if (_index > 0) {
+                                            _index -= 1;
+                                          }
+                                        });
+                                      },
+                                      style: StyleTheme.outlineButton,
+                                      child: const Text("Kembali")),
+                                ] else ...[
+                                  const SizedBox(
+                                    width: 20,
+                                  )
+                                ],
+                                if (_result != 'X') ...[
+                                  if (_index ==
+                                      state.questionResponse.data!.length -
+                                          1) ...[
+                                    // KUMPULIN BUTTON
+                                    ElevatedButton(
+                                      style: StyleTheme.primaryButton,
+                                      onPressed: () {
+                                        setState(() {
+                                          state.questionResponse.data![_index]
+                                              .studentAnswer = _result;
+                                          showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return SubmitModalWidget(
+                                                questionList: state
+                                                        .questionResponse
+                                                        .data ??
+                                                    [],
+                                                exerciseId: widget.exerciseId,
+                                              );
+                                            },
+                                          );
+                                        });
+                                      },
+                                      child: const Text("Kumpulin"),
+                                    )
+                                  ] else ...[
+                                    // SELANJUTNYA BUTTON
+                                    ElevatedButton(
+                                      style: StyleTheme.primaryButton,
+                                      onPressed: () {
+                                        setState(() {
+                                          if (_index <=
+                                              state.questionResponse.data!
+                                                  .length) {
+                                            state.questionResponse.data![_index]
+                                                .studentAnswer = _result;
+                                            _index += 1;
+                                            _result = "X";
+                                          }
+                                        });
+                                      },
+                                      child: const Text("Selanjutnya"),
+                                    )
+                                  ]
+                                ] else ...[
+                                  const Text("Jawaban Belum Dipilih")
+                                ]
                               ],
                             ),
                           ],
@@ -231,9 +263,7 @@ class _QuestionListPageState extends State<QuestionListPage> {
                   );
                 }
 
-                if (state is QuestionFailed) {
-                  log("ini");
-                }
+                if (state is QuestionFailed) {}
 
                 return const Center(
                   child: CircularProgressIndicator(),

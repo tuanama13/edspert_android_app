@@ -32,16 +32,22 @@ class _OptionListWidgetState extends State<OptionListWidget> {
             : Colors.white,
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "${widget.result}. ",
               style: const TextStyle(color: Colors.black),
             ),
-            HtmlWidget(
-              widget.titleValue,
-              textStyle: const TextStyle(color: Colors.black),
+            const SizedBox(
+              width: 7,
+            ),
+            Expanded(
+              child: HtmlWidget(
+                widget.titleValue,
+                textStyle: const TextStyle(color: Colors.black),
+              ),
             )
           ],
         ),

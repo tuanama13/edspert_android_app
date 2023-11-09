@@ -12,6 +12,11 @@ final class QuestionSuccess extends QuestionState {
   QuestionSuccess({required this.questionResponse});
 }
 
+final class ExerciseResultSuccess extends QuestionState {
+  final ResultResponse resultResponse;
+  ExerciseResultSuccess({required this.resultResponse});
+}
+
 final class QuestionFailed extends QuestionState {
   final String? message;
   QuestionFailed(this.message);

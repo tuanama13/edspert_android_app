@@ -33,7 +33,8 @@ class AllCourseListPage extends StatelessWidget {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.only(left: 22.0, right: 22.0, top: 12.0),
+              padding:
+                  const EdgeInsets.only(left: 22.0, right: 22.0, top: 12.0),
               child: BlocBuilder<CourseBloc, CourseState>(
                 builder: (context, state) {
                   if (state is CourseFailed) {
