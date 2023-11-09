@@ -1,3 +1,4 @@
+import 'package:edspert_app/constants/colors.dart';
 import 'package:edspert_app/screen/home_screen/home_screen_page.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,9 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorThemes.backgroundColor,
       appBar: AppBar(
+        backgroundColor: ColorThemes.backgroundColor,
         title: const Text(
           'Login',
           style: TextStyle(fontWeight: FontWeight.bold),
