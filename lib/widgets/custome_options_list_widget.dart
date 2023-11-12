@@ -5,21 +5,22 @@ import 'package:edspert_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
-class OptionListWidget extends StatefulWidget {
+class CustomeOptionListWidget extends StatefulWidget {
   final String selectedValue;
   final String result;
   final String titleValue;
-  const OptionListWidget(
+  const CustomeOptionListWidget(
       {super.key,
       required this.result,
       required this.titleValue,
       required this.selectedValue});
 
   @override
-  State<OptionListWidget> createState() => _OptionListWidgetState();
+  State<CustomeOptionListWidget> createState() =>
+      _CustomeOptionListWidgetState();
 }
 
-class _OptionListWidgetState extends State<OptionListWidget> {
+class _CustomeOptionListWidgetState extends State<CustomeOptionListWidget> {
   bool isSelected = false;
   @override
   Widget build(BuildContext context) {
@@ -36,10 +37,6 @@ class _OptionListWidgetState extends State<OptionListWidget> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "${widget.result} ",
-              style: const TextStyle(color: Colors.black),
-            ),
             const SizedBox(
               width: 7,
             ),

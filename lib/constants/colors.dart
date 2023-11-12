@@ -18,4 +18,5 @@ class ColorThemes {
   static Color appBarTitleColor = Colors.white;
   static Color textSubtitle1 = hexToColor('#979797');
   static Color border = hexToColor('#C9C9C9');
+  static Color textFieldBorder = hexToColor('#D6D6D6');
 }

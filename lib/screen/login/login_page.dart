@@ -1,5 +1,6 @@
 import 'package:edspert_app/constants/colors.dart';
 import 'package:edspert_app/screen/home_screen/home_screen_page.dart';
+import 'package:edspert_app/screen/register/register_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -56,7 +57,7 @@ class LoginPage extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const HomeScreenPage(),
+                        builder: (context) => const RegisterPage(),
                       ),
                     );
                   },
