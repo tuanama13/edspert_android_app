@@ -15,6 +15,7 @@ class ColorThemes {
   static Color lightScaffoldBackgroundColor = hexToColor('#F9F9F9');
   static Color primary = hexToColor('#3A7FD5');
   static Color backgroundColor = hexToColor('#F3F7F8');
+  static Color backgroundColorButton = hexToColor('#F6F6F6');
   static Color appBarTitleColor = Colors.white;
   static Color textSubtitle1 = hexToColor('#979797');
   static Color border = hexToColor('#C9C9C9');

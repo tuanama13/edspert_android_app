@@ -1,6 +1,9 @@
 import 'dart:developer';
 
+import 'package:edspert_app/constants/colors.dart';
+import 'package:edspert_app/screen/diskusi_soal/diskusi_soal_page.dart';
 import 'package:edspert_app/screen/home_screen/home_screen_page.dart';
+import 'package:edspert_app/screen/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class HomeParentPage extends StatefulWidget {
@@ -15,8 +18,8 @@ class _HomeParentPageState extends State<HomeParentPage> {
 
   final pages = [
     const HomeScreenPage(),
-    const HomeScreenPage(),
-    const HomeScreenPage(),
+    const DiskusiSoalPage(),
+    const ProfilePage(),
   ];
 
   @override
@@ -24,6 +27,7 @@ class _HomeParentPageState extends State<HomeParentPage> {
     return Scaffold(
         body: pages[pageIndex],
         bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: ColorThemes.primary,
           currentIndex: pageIndex,
           onTap: (value) {
             setState(() {

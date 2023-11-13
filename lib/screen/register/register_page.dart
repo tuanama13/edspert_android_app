@@ -45,7 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
           title: const Text('Yuk Isi Data Diri'),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(30),
+              bottom: Radius.circular(15),
             ),
           ),
         ),
